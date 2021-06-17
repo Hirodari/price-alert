@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block css %}
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/form.css') }}">
+{% endblock %}
+
+{% block content%}
+	<h1>Create Item</h1>
+	<form action="{{ url_for('items.new_item') }}" method="post">
+	  <div class="mb-3">
+	    <label for="exampleInputEmail1" class="form-label">URL</label>
+	    <input type="text" class="form-control" name="url" placeholder="https://...*">
+	    <div id="emailHelp" class="form-text">Please set a correct url</div>
+	  </div>
+	  <div class="mb-3">
+	    <label for="exampleInputPassword1" class="form-label">Tag Name</label>
+	    <input type="text" class="form-control" name="tag" placeholder="span">
+	  </div>
+	  <div class="mb-3">
+	    <label for="exampleInputPassword1" class="form-label">Query</label>
+	    <input type="text" class="form-control" name="query" placeholder="{'id': '..'}">
+	  </div>
+	  <button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+{% endblock %}

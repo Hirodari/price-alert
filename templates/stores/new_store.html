@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block css %}
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/form.css') }}">
+{% endblock %}
+
+{% block content%}
+	<h1>Create Store</h1>
+	<form action="{{ url_for('stores.new_store') }}" method="post">
+	  <div class="mb-3">
+	    <label for="exampleInputEmail1" class="form-label">Store Name</label>
+	    <input type="text" class="form-control" name="store_name" placeholder="E.g: John Lewis ...">
+	    <!-- <div id="emailHelp" class="form-text">Please set a correct url</div> -->
+	  </div>
+	  <div class="mb-3">
+	    <label for="exampleInputEmail1" class="form-label">Url Prefix</label>
+	    <input type="text" class="form-control" name="url_prefix" placeholder="Url Prefix ...">
+	    <!-- <div id="emailHelp" class="form-text">Please set a correct url</div> -->
+	  </div>
+	  <div class="mb-3">
+	    <label for="exampleInputPassword1" class="form-label">Tag Name</label>
+	    <input type="text" class="form-control" name="tag_name" placeholder="e.g: p">
+	    <div id="emailHelp" class="form-text">Under which price would like to be notified</div>
+	    {% if msg %}
+	     <p>{{ msg}}</p>
+	    {% endif%}
+	  </div>
+	  <div class="mb-3">
+	    <label for="exampleInputPassword1" class="form-label">Query</label>
+	    <input type="text" class="form-control" name="query" placeholder="{'class':'price price--large'}">
+	    <div id="emailHelp" class="form-text">Under which price would like to be notified</div>
+	    {% if msg %}
+	     <p>{{ msg}}</p>
+	    {% endif%}
+	  </div>
+	  <button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+{% endblock %}
+
+<!-- def json(self):
+		return {
+			"_id": self._id,
+			"name": self.name,
+			"url_prefix": self.url_prefix,
+			"tag_name": self.tag_name,
+			"query": self.query
+		} -->

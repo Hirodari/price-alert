@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block css %}
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/jumbo.css') }}">
+{% endblock %}
+{% block content%}
+	<div class="row align-items-md-stretch jumbo">
+	      <div class="col-md-8">
+	        <div class="h-100 p-5 text-white bg-dark rounded-3">
+	          <h2>Pricing Service</h2>
+	          <p>We scan online store to alert you of price drops in terms that interest you.</p>
+	          <hr>
+	          <p>Just sign up, and get started by adding the url of the item that you wish to track. we'll do the rest!</p>
+	          <a class="btn btn-outline-light" type="button" href="{{ url_for('users.register')}}">Get started</a>
+	        </div>
+	      </div>
+	</div>
+{% endblock %}

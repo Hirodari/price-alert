@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block css %}
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/form.css') }}">
+{% endblock %}
+
+{% block content%}
+	<h1>Update Alert</h1>
+	<form action="{{ url_for('alerts.update_alert', alert_id = alert._id) }}" method="post">
+	  <div class="mb-3">
+	    <label for="exampleInputEmail1" class="form-label">Item Url</label>
+	    <input type="text" class="form-control" name="item_url" value={{alert.item.uri}} disabled>
+	    <!-- <div id="emailHelp" class="form-text">Please set a correct url</div> -->
+	  </div>
+	  <div class="mb-3">
+	    <label for="exampleInputEmail1" class="form-label">Alert name</label>
+	    <input type="text" class="form-control" name="alert_name" value={{alert.name}} disabled>
+	    <!-- <div id="emailHelp" class="form-text">Please set a correct url</div> -->
+	  </div>
+	  <div class="mb-3">
+	    <label for="exampleInputPassword1" class="form-label">Price Limit</label>
+	    <input type="text" class="form-control" name="price_limit" value={{alert.price_limit}}>
+	    <div id="emailHelp" class="form-text">Under which price would like to be notified</div>
+	    {% if msg %}
+	     <p>{{ msg}}</p>
+	    {% endif%}
+	  </div>
+	  <button type="submit" class="btn btn-primary">Update</button>
+	</form>
+{% endblock %}

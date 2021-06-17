@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block css %}
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/form.css') }}">
+{% endblock %}
+
+{% block content%}
+	<div class="list-group"> 
+	  <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+	    Alerts
+	  </button>
+	  {% for alert in msg %}
+	  	<button type="button" class="list-group-item list-group-item-action">{{ alert.name}} (last price £{{alert.price}})</button>
+	  	<a type="button" class="list-group-item list-group-item-action" href="{{ url_for('alerts.update_alert', alert_id = alert._id) }}">Price limit: {{alert.price_limit}}
+	  	<p id="emailHelp" class="form-text">Click to edit price limit</p>
+	  	</a>
+	  	<a type="button" class="btn btn-danger" href = "{{url_for('alerts.delete', alert_id = alert._id)}}"> Delete Alert</a>
+
+	  {% endfor %}
+
+	</div>
+	<div class="mt-2 col-2 mx-auto">
+		<a type="button" class="btn btn-primary" href = "{{url_for('alerts.new_alert')}}">Create Alert</a>
+		
+	</div>
+	
+{% endblock %}

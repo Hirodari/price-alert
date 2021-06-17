@@ -1,0 +1,41 @@
+Creating Users profile
+
+models: package -> user -> __init__.py
+import models.user.errors as UserErrors
+- user.py
+	- find_by_email -> def
+	- register_user -> def
+	- json 			-> def
+- error.py
+	- UserError -> class
+	- UserNotFoundError -> class -> inherit from UserError -> pass
+	- InvalidEmailError -> class -> inherit from UserError -> pass
+	- UserAlreadyRegisteredError -> class -> inherit from UserError -> pass
+
+views:
+- users: session, 
+app.secret_key = os.urandom(64)
+
+common: ->utils.py
+	-Utils: email_is_valid	-> regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$' return a bool
+
+password encryption is done with passlib
+
+from passlib.hash import pbkdf2_sha512
+
+view your own alerts
+add user_email attributes to alerts
+
+
+def send_simple_message():
+	return requests.post(
+		"https://api.mailgun.net/v3/sandbox2c1dcbcdc9254d048e36e6bd7871ebd5.mailgun.org/messages",
+		auth=("api", "c6a92a5a2e19c9f7a4bde3b97770c25b-24e2ac64-e82c4dea"),
+		data={"from": "Excited User <mailgun@YOUR_DOMAIN_NAME>",
+			"to": ["bar@example.com", "YOU@YOUR_DOMAIN_NAME"],
+			"subject": "Hello",
+			"text": "Testing some Mailgun awesomness!"})
+
+API key: 
+
+API base URL: 

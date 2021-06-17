@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block css %}
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/form.css') }}">
+{% endblock %}
+
+{% block content%}
+	<div class="list-group"> 
+	  <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+	    Stores
+	  </button>
+	  {% for store in msg %}
+	  	<a type="button" class="list-group-item list-group-item-action" href="{{url_for('stores.update_store', store_id = store._id)}}">{{store.name}}</a>
+	  	<a type="button" class="list-group-item list-group-item-action">{{store.url_prefix}}</a>
+	  	{% if session['email'] == config.ADMIN %}
+	  		<a type="button" class="btn btn-danger" href="{{url_for('stores.delete', store_id = store._id)}}">Delete</a>
+	  	{% endif %}
+	  {% endfor %}
+
+	</div>
+	{% if session['email'] == config.ADMIN %}
+		<div class="mt-2 col-2 mx-auto">
+			<a type="button" class="btn btn-primary" href = "{{ url_for('stores.new_store') }}">Create Store</a>
+		
+		</div>
+	{% endif %}
+{% endblock %}

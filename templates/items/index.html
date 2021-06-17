@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block css %}
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/form.css') }}">
+{% endblock %}
+
+{% block content%}
+	<div class="list-group">
+	  <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+	    Alerts
+	  </button>
+	  {% for item in msg %}
+	  	<a type="button" class="list-group-item list-group-item-action" href="{{ item.uri }}">{{ item.uri }}</a>
+	  {% endfor %}
+
+	</div>
+	<div class="mt-2 col-2 mx-auto">
+		<a type="button" class="btn btn-primary" href="{{ url_for('items.new_item') }}">Create item</a>
+		
+	</div>
+	
+{% endblock %}
