@@ -1,7 +1,7 @@
 from models.alert import Alert
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 alerts = Alert.all()
 

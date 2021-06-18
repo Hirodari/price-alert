@@ -1,3 +1,28 @@
+Price alert Architecture
+
+- common folder: Database code and Utils code -> email validation, password encryption and credentials validation
+- libs: for 3rd party API's
+- models: User-> user folder: decorators and user code, alert.py, item.py, model.py and store.py, model the model connect views to the Database, a page is processed from view's file and rendered by model files.
+- views: alerts.py, items.py, stores.py and users. 
+- static: this is where css, javascript and images can be stored
+- templates: this is html templates are stored: alerts, items, stores, users, base.html and home.html 
+- app.py is where Flask engine is initialized
+- alert_updater.py: a script desiged to update alerts and initialize a notification if any
+
+Deployment of flask app on heroku steps
+ref to https://devcenter.heroku.com/articles/getting-started-with-python
+on the root create the following file:
+requirements.txt: put all installed dependencies as Flask, requests etc...
+Procfile: web: uwsgi uwsgi.init
+uwsgi.ini: put the text below
+[uwsgi]
+http-socket = :$(PORT)
+master = true
+die-on-terms = true
+module = app:app
+memory-report = true 
+
+
 Creating Users profile
 
 models: package -> user -> __init__.py
@@ -6,11 +31,7 @@ import models.user.errors as UserErrors
 	- find_by_email -> def
 	- register_user -> def
 	- json 			-> def
-- error.py
-	- UserError -> class
-	- UserNotFoundError -> class -> inherit from UserError -> pass
-	- InvalidEmailError -> class -> inherit from UserError -> pass
-	- UserAlreadyRegisteredError -> class -> inherit from UserError -> pass
+
 
 views:
 - users: session, 
@@ -36,6 +57,48 @@ def send_simple_message():
 			"subject": "Hello",
 			"text": "Testing some Mailgun awesomness!"})
 
+
+(base) fredbitenyo@hiro-Tools:~/Downloads/udemy/flask/chair-price$ heroku create price-1
+Creating ⬢ price-1... done
+https://price-1.herokuapp.com/ | https://git.heroku.com/price-1.git
+
+
 API key: 
 
 API base URL: 
+
+Heruko
+
+heroku --version
+heroku login
+heroku create
+
+Create a new Git repository
+Initialize a git repository in a new or existing directory
+
+$ cd my-project/
+$ git init
+$ heroku git:remote -a training-blog-fred
+Deploy your application
+Commit your code to the repository and deploy it to Heroku using Git.
+
+$ git add .
+$ git commit -am "make it better"
+$ git push heroku master
+Existing Git repository
+For existing repositories, simply add the heroku remote
+
+$ heroku git:remote -a training-blog-fred
+
+git add -A
+git commit -m #This is very important to commit make sure the configs were saved
+heroku keys:add
+git push heroku master
+heroku rename alpha_blog_fred
+## to migrate the DB
+heroku run rails db:migrate
+#very important
+heroku logs
+heroku open
+heroku maintenance:off
+heroku run rails console

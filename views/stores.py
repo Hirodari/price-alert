@@ -50,5 +50,6 @@ def update_store(store_id):
 @store_blueprint.route("/delete/<string:store_id>")
 @requires_admin
 def delete(store_id):
-	store = Store.get_by_id(store_id).remove_from_mongo()
+	# store = Store.get_by_id(store_id).remove_from_mongo()
+	Store.get_by_id(store_id).remove_from_mongo()
 	return redirect(url_for(".index"))

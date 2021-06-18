@@ -53,7 +53,7 @@ def delete(alert_id):
 	# print(alert)
 	if alert.user_email == session['email']:
 		alert.remove_from_mongo()
-		return "removed"
+		# return "removed"
 	return redirect(url_for(".index"))
 
 	

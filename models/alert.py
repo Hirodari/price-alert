@@ -41,6 +41,6 @@ class Alert(Model):
 
 	def notify_if_price_reached(self):
 		if self.load_item_price() < self.price_limit:
-			# return f"Item has reached a price under {self.price_limit} latest price {self.item.load_price()}"
-			message = f"Item has reached a price under {self.price_limit} latest price {self.item.load_price()}"
-			return Mailgun(message).send_simple_message()
+			return f"Item has reached a price under {self.price_limit} latest price {self.item.load_price()}"
+			# message = f"Item has reached a price under {self.price_limit} latest price {self.item.load_price()}"
+			# return Mailgun(message).send_simple_message()

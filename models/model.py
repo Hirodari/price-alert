@@ -19,7 +19,8 @@ class Model(metaclass=ABCMeta):
 
 	
 	def remove_from_mongo(self):
-		return Database.remove(self.collection, {"_id": self._id}, self.json())
+		# print(f"removing: {self._id}, {self.collection} ,{self.json()}")
+		return Database.remove(self.collection, {"_id": self._id})
 
 	@classmethod
 	def find_one(cls, attribute: str, value: Union[str, Dict]):
