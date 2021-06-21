@@ -102,3 +102,27 @@ heroku logs
 heroku open
 heroku maintenance:off
 heroku run rails console
+
+
+Deploy my price alert on AWS platform EC2
+ 
+- set up EC2 with requirements.text, python3, pip3-pip package manager
+- set up security protocol ssh, http, https, port 8000 
+- ssh-ad key_pair.pem 
+- install requirements.text: pip -r requirements.txt 
+- install ngnix: sudo apt-get nginx 
+- install gunicorn: sudo apt-get gunicorn
+- test flask simple script: python3 app.py, host='0.0.0.0' and port=8000
+- create a file: flaskapp see the code below, ref: https://gunicorn.org/#deployment
+server {
+    listen 80;
+    server_name 3.83.238.171;
+    
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+    }
+  }
+
+  - restart the ngnix service: sudo service nginx restart
+

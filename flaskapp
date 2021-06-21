@@ -1,0 +1,9 @@
+  server {
+    listen 443;
+    server_name 3.83.238.171;
+    
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+    }
+  }
